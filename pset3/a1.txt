@@ -1,0 +1,68 @@
+
+// Dominik Hillmann
+
+  /* ***  Teilaufgabe (a) *** */
+
+  int x = 1;
+  
+  printf("x = %d\n",x--);
+    Rückgabe printf: "x = 1", Wert von x nach der Zeile: 0.
+    Da das "--" ein Postfix ist, wird zuerst der Wert von x zurückgegeben, danach x um 1 reduziert.
+    
+  printf("x = %d\n",++x);
+    Rückgabe printf: "x = 1", Wert von x nach der Zeile: 1.
+    "++" ist ein Präfix. x wird zuerst um 1 erhöht, dann zurückgegeben.
+    
+  printf("x = %d\n",x++);
+    Rückgabe printf: "x = 1", Wert von x nach der Zeile: 2.
+    Hier ist "++" ein Postfix, d.h. x wird zuerst zurückgegeben, dann um 1 erhöht.
+    
+  printf("x = %d\n",--x);
+    Rückgabe printf: "x = 1", Wert nach der Zeile: 1.
+    "--" als Präfix: x wird als erstes um 1 erniedrigt, dann zurückgegeben.
+
+  
+  /* ***  Teilaufgabe (b) *** */
+
+  int y = 1, z = 2;
+  
+  printf("%d\n", y / z);
+    Würde 0 ausgeben, da die Division zweier Integers einen Integer ergeben muss.
+    Da das Ergebnis 0.5 wäre, das Integers aber nicht darstellen, wird alles nach dem
+    Komma "abgehackt", damit es wieder als Integer dargestellt werden kann.
+
+  printf("%f\n",(double)(y / z));
+    Würde 0 mit Kommastellen ausgeben (also 0.000000).
+    Zuerst wird (y/z) ausgewertet, was 0 ergibt (wie in der Aufgabe davor).
+    Dann wird das mittles Typumwandlung (double) 0 zu einem double umgewandelt (0.000000).
+    Nun mit %f durch printf als Gleitpunktkommazahl formatiert ausgegeben.
+    
+  printf("%f\n",y / (double) z);
+    Würde 0.500000 ausgeben.
+    Zuerst eine Typumwandlung von z als int zu z als double, 2 --> 2.000000.
+    Dadurch, dass ein Integer durch eine Gleitkommazahl dividiert wird, wird das Ergebnis auch
+    eine Gleitkommazahl sein, also 0.500000.
+    0.500000 wird als float formatiert über printf ausgegeben.    
+
+  printf("%d\n",(int) ((double) y / (double) z));
+    Es würde 0 ausgegeben werden.
+    Zuerst werden y und z mittels Typenumwandlung in Kommazahlen umgewandelt und dann dividiert.
+    Das ergibt 0.500000, was wiederrum in einen Integer umgewandelt wird.
+    Dieser kann nur ganze Zahlen speichern und durch die Formatierung wird wieder alles nach dem . "abgehackt".
+
+
+  /* ***  Teilaufgabe (c) *** */
+
+  int a = 0;
+  
+  printf("%c %c %c\n",33, 66, '+' - 1);
+    Ausgabe: "! B *".
+    Die Formatierung %c in printf gibt an, dass diese numerischen Werte gemäß der ASCII-Tabelle in Zeichen übersetzt werden sollen: 33 ist das !, 66 das B.
+    Ausdruck ’+’ - 1: Das + wird gemäß ASCII in die entsprechende Zahl übersetzt, also 43.
+    43 - 1 = 42. Zeichen 42 nach ASCII ist *.
+
+  printf("%c\n",((a = 1) == (11 / 10)) ? 'G' : 'U');
+    Ternärer Operator: wenn Ausdruck vor dem ? true/1, dann wird Wert vor dem : zurückgegeben.
+    Wenn Ausdruck vor dem ? false/0, dann wird Wert nach dem : zurückgeben.
+    Da die Integers 11 / 10 = 1 ("abgehacktes 1.1") und die Aussage "1 == 1" wahr/true/1 ist,
+    wird der Wert vor dem : zurückgegeben und damit von printf ausgegeben.
